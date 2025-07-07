@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container" x-data="expenseApp()">
+    <h1>Expense Tracker</h1>
+    <form @submit.prevent="addExpense">
+      <input type="text" placeholder="Expense description" x-model="description">
+      <input type="number" placeholder="Amount" x-model="amount">
+      <button type="submit">Add Expense</button>
+    </form>
+    <ul>
+      <template x-for="expense in expenses" :key="expense.id">
+        <li>
+          <span x-text="expense.description"></span>
+          <span x-text="expense.amount"></span>
+          <button @click="deleteExpense(expense.id)">Delete</button>
+        </li>
+      </template>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
